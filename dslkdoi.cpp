@@ -61,7 +61,7 @@ void insertlast(nodePtr &pHead, int x)
 			p = p->next;
 		}
 		p->next = tmp;
-		tmp->prev = p->next;
+		tmp->prev = p;
 		tmp->next = NULL;
 	}
 }

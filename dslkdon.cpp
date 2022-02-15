@@ -89,6 +89,29 @@ void insertbefore(nodePtr &pHead, int x, int vitrinut)
 		p->next = tmp;
 	}
 }
+void insertmiddle(nodePtr &pHead, int x, int vitrinut)
+{
+	if(vitrinut <=0  || vitrinut > (Sizeof(pHead)+1)){
+		cout<<"vi tri chen nut khong hop le!!"<<endl;
+	}
+	else if(vitrinut == 1){
+		insertfirst(pHead,x);
+		return;
+	}
+	else if(vitrinut == Sizeof(pHead)){
+		insertlast(pHead,x);
+		return;
+	}
+	else{
+		nodePtr p = pHead;
+		for(int i=1; i< vitrinut-1; i++){
+			p = p->next;
+		}
+		nodePtr tmp = CreateNode(x);
+		tmp->next = p->next;
+		p->next = tmp;
+	}
+}
 void deletefirst(nodePtr &pHead)
 {
 	nodePtr p;
@@ -175,7 +198,7 @@ void deletenode(nodePtr &pHead, int vitrinut)
 	else{
 		nodePtr truoc = NULL;
 		nodePtr p = pHead;
-		for(int i=1;i<vitrinut-1;i++){
+		for(int i=1;i<vitrinut;i++){
 			truoc = p;
 			p = p->next;
 		}
@@ -235,6 +258,7 @@ int main(){
 		cout<<"10.xoa danh sach"<<endl;
 		cout<<"11.tim nut co phan tu x"<<endl;
 		cout<<"12.sap xep cac nut theo thu tu tang dan cua truong data"<<endl;
+		cout<<"13.them nut vao vi tri cho da cho truoc"<<endl;
 		cout<<"0. dung vong lap"<<endl;
 		cout<<"==========end======="<<endl;
 		int lc;
@@ -291,6 +315,12 @@ int main(){
 		}
 		else if(lc == 12){
 			selectionsort(pHead);
+		}
+		else if(lc == 13){
+			int x;cout<<"Nhap gia tri can chen:";cin>>x;
+			int vitri;cout<<"Nhap vi tri cua nut can chen:";
+			cin>>vitri;
+			insertmiddle(pHead,x,vitri);
 		}
 		else if(lc == 0){
 			break;
